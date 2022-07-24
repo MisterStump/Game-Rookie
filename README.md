@@ -1,3 +1,6 @@
+# Under Development
+This project is just a fun exercise for me, and is heavily under development. Features will not work, be missing, or just look terrible. I'd keep this private, but I wanted to expose the GitHub Pages so here we are together. If you have any suggestions or feedback I am always open to constructive criticism.
+
 # Overview
 Game Rookie is a GM/DM assisting tool for a popular Tabletop RPG.
 
