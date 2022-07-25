@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Rookie - Overview</title>
+    <title>Game Rookie - Search Monster</title>
 
     <link rel="stylesheet" href="css/main.css">
 
@@ -24,8 +24,24 @@
     </div>
 
     <div id="main">
-        <h2>Text here</h2>
-        <p>Content...</p>
+        <h2>How It Works</h2>
+        <p>Make search selections and click the "Search" button to return a list of matching creaters.</p>
+        <h2>Search</h2>
+        <div class="searchInputs">
+             <button onclick="search()">Click to Search</button>
+        </div>
+        <h2>Results</h2>
+        <div class="searchHeaders">
+            <div>Name</div>
+            <div>Size</div>
+            <div>Type</div>
+            <div>Armor Class</div>
+            <div>Hit Points</div>
+            <div>CR</div>
+        </div>
+        <div class="searchResults" id="searchResults">
+            
+        </div>
     </div>
 </body>
 

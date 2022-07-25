@@ -29,10 +29,35 @@ function openNav() {
 
 var monsterList
 
-
+// SetJSONS from stroage (async)
 fetch("./json/Monsters.json")
 	.then(response => {return response.json();})
 	.then(jsondata => monsterList = jsondata);
+
+
+
+//Fields to search with:name, size, type, armor_class, hit_points, hit_dice, speed type,challenge_rating
+
+function search(){
+	var srDiv = document.getElementById("searchResults")
+	// Kill children in div
+	clearSearch(srDiv)
+	// Draw new rows
+	for (monster of monsterList){
+		var newRow = document.createElement("div");
+		newRow.innerText = monster.name
+		srDiv.appendChild(newRow)
+	}
+}
+
+// Clears search results, takes the search results div element
+function clearSearch(e){
+	var child = e.lastElementChild; 
+	while (child) {
+		e.removeChild(child);
+		child = e.lastElementChild;
+	}
+}
 
 
 

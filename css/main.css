@@ -2,16 +2,16 @@
 body { 
     margin: 0;
 	font-family: Helvetica, sans-serif;
-	background-color: #818181;
+	background-color: #383838;
+	color:#fff;
 }
 
 /* Top bar area*/
 .topbar {
 	height: 40px;/* 100% Full-height */
 	display:flex;
-	background-color: #111;;
+	background-color: #111;
 	align-items:center;
-	color:azure;
 }
 /* Sidebar controls */
 .sidebarOpen, .sidebarClose{
@@ -64,7 +64,6 @@ body {
 .sidebar .currentPage {
 	color: #fff;
 }
-
 /* When you mouse over the navigation links, change their color */
 .sidebar a:hover {
 	color: #f1f1f1;
@@ -83,3 +82,47 @@ body {
 	padding: 20px;
 }
 
+
+
+
+/* Search results header bar*/
+.searchHeaders {
+	height: 40px;/* 100% Full-height */
+	display:flex;
+	background-color: rgb(173, 147, 147);
+	justify-content: center;
+	align-items: stretch;
+	
+}
+.searchHeaders > div {
+	padding: 0.5em;
+	background-color: rgb(131, 39, 39);
+	/* Fill search bar with all cells of equal size */
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: 0;
+	/* Align the text in the cells*/
+	display: flex;
+	align-items: center;
+}
+
+/* Search results body*/
+.searchResults {
+	height: 40px;/* 100% Full-height */
+	display:flex;
+	background-color: rgb(173, 147, 147);
+	justify-content: center;
+	align-items: stretch;
+	
+}
+.searchResults > div {
+	padding: 0.5em;
+	background-color: rgb(131, 39, 39);
+	/* Fill search bar with all cells of equal size */
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: 0;
+	/* Align the text in the cells*/
+	display: flex;
+	align-items: center;
+}
