@@ -128,3 +128,13 @@ body {
 	display: flex;
 	align-items: center;
 }
+
+.collapsableContent {
+	background-color:#f1f1f1;
+	color:#000;
+	height: 50px;
+	border-style:solid;
+	border-width: 1px;
+	border-color:rgb(131, 39, 39);
+	padding:5px;
+}
