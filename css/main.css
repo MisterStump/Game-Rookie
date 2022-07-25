@@ -107,17 +107,19 @@ body {
 }
 
 /* Search results body*/
-.searchResults {
+.searchResult {
 	height: 40px;/* 100% Full-height */
 	display:flex;
-	background-color: rgb(173, 147, 147);
+	background-color: rgb(0, 0, 0);
 	justify-content: center;
 	align-items: stretch;
-	
+	border-style:solid;
+	border-width: 1px;
+	border-color:rgb(131, 39, 39);
 }
-.searchResults > div {
+.searchResult > div {
 	padding: 0.5em;
-	background-color: rgb(131, 39, 39);
+
 	/* Fill search bar with all cells of equal size */
 	flex-grow: 1;
 	flex-shrink: 0;

@@ -39,14 +39,37 @@ fetch("./json/Monsters.json")
 //Fields to search with:name, size, type, armor_class, hit_points, hit_dice, speed type,challenge_rating
 
 function search(){
-	var srDiv = document.getElementById("searchResults")
+	var src = document.getElementById("searchResultContainer")
 	// Kill children in div
-	clearSearch(srDiv)
-	// Draw new rows
+	clearSearch(src)
+	// Add rows
 	for (monster of monsterList){
+		// Temp stop point to only return a handfull of results. Should be removed later. Test
+		if (monster.name=="Air Elemental"){
+			break
+		}
+		// Create row
 		var newRow = document.createElement("div");
-		newRow.innerText = monster.name
-		srDiv.appendChild(newRow)
+		newRow.classList.add('searchResult')
+		src.appendChild(newRow)
+		// Create cells
+		var cellValueList = [
+			monster.name,
+			monster.size,
+			monster.type,
+			monster.armor_class,
+			monster.hit_points,
+			monster.challenge_rating
+		]
+		for (cellIndex in cellValueList){
+			var cellValue = cellValueList[cellIndex]
+			var newCell = document.createElement("div");
+			if (cellIndex == 0){
+				newCell.style.cssText += "flex-grow:2;"
+			}
+			newCell.innerText = cellValue
+			newRow.appendChild(newCell)
+		}
 	}
 }
 
