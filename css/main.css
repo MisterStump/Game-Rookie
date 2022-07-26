@@ -128,12 +128,11 @@ body {
 }
 .collapsableContent {
 	background-color:#222222;
-	height: 50px;
 	border-style:solid;
 	border-width: 1px;
 	border-color:rgb(131, 39, 39);
 	height:auto;
-	box-shadow: inset 0 0 10px #000000;
+	box-shadow: inset 0 0 20px #000000;
 	padding: 0.25em;
 }
 
@@ -144,12 +143,12 @@ body {
 .mc_header, .mc_body {
 	display:flex;
 }
-.mc_header_stat {
+.mc_header div {
 	padding: 0.5em;
 	flex-grow: 1;
 	text-align: center;
 }
-.mc_header_stat span {
+.mc_header div span {
 	background-color: rgb(80, 43, 43);
 	padding:0.25em 1em;
 	border-radius: 25px;
@@ -162,6 +161,7 @@ body {
 .mc_body_title {
 	background-color: rgb(80, 43, 43);
 	padding: 0.5em;
+	text-transform: capitalize;
 }
 .mc_body_desc {
 	padding: 0.5em;
@@ -175,6 +175,7 @@ body {
     list-style: none;
 	margin-block:0.5em;
 	padding-inline-start: 1.2em;
+	text-transform: capitalize;
 }
 /* Add a red bullet instead of the default */
 .mc_body_list ul li::before {

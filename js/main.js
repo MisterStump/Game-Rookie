@@ -46,10 +46,12 @@ function search(){
 	for (monster of monsterList){
 		// Temp stop point to only return a handfull of results. Should be removed later. Test
 		if (monster.name=="Air Elemental"){
-			break
+			//break
 		}
 		// Add row with collapsable card for monster
-		makeMonsteRow(src, monster)
+		var collapsableContentCard = makeMonsterRow(src, monster)
+		// Add collapsable card with monster details
+		makeMonsterCard(collapsableContentCard, monster)
 	}
 }
 
@@ -62,12 +64,12 @@ function clearSearch(e){
 	}
 }
 
-function makeMonsteRow(src, monster){
+function makeMonsterRow(parentDiv, monster){
 	// Create row
 	var newRow = document.createElement("div");
 	newRow.classList.add('searchResult')
 	newRow.classList.add('collapsable')
-	src.appendChild(newRow)
+	parentDiv.appendChild(newRow)
 	// Create cells
 	var cellValueList = [
 		monster.name,
@@ -96,17 +98,162 @@ function makeMonsteRow(src, monster){
 		  content.style.display = "block";
 		}
 	});
-	// Create collapsable section
 	var collapsable = document.createElement("div");
 	collapsable.classList.add('collapsableContent')
 	collapsable.style.display = "none";
-	collapsable.innerHTML = "A card with all the monster details will go here"
-	src.appendChild(collapsable)
+	parentDiv.appendChild(collapsable)
+	return collapsable
 }
 
+// Create a monster card parented to parentDiv
+function makeMonsterCard(parentDiv, monster) {
+	// Monster card
+	var monsterCard = document.createElement("div");
+	monsterCard.classList.add('monsterCard')
+	parentDiv.appendChild(monsterCard)
+
+	// Header bar
+	var headerBar = document.createElement("div");
+	headerBar.classList.add("mc_header")
+	monsterCard.appendChild(headerBar)
+
+	// Stat blocks
+	const statList = {
+		"STR:" : "strength",
+		"DEX:" : "dexterity",
+		"CON:" : "constitution",
+		"INT:" : "intelligence",
+		"WIS:" : "wisdom",
+		"CHA:" : "charisma",
+	}
+	for (shortName in statList){
+		const longName = statList[shortName]
+		var statDiv = document.createElement("div")
+		statDiv.innerHTML = '<span>' + shortName + '&nbsp;' + monster[longName] + '</span>'
+		headerBar.appendChild(statDiv)
+	}
+
+	// Body
+	var body = document.createElement("div");
+	body.classList.add('mc_body')
+	monsterCard.appendChild(body)
+	// Left
+	var bodyLeft = document.createElement("div");
+	bodyLeft.classList.add('mc_body_left')
+	body.appendChild(bodyLeft)
+	// Right
+	var bodyRight = document.createElement("div");
+	bodyRight.classList.add('mc_body_right')
+	body.appendChild(bodyRight)
+
+	//Left side title and body pairs
+	makeMonsterCard_left(bodyLeft, monster)
+
+	//Right side title and body pairs
+	makeMonsterCard_right(bodyRight, monster)
+	
+}	
+
+// Create left-side monster card entries
+function makeMonsterCard_left(parentDiv, monster){
+	const sectionOrderList = [
+		"speed",
+		"senses",
+		"proficiencies",
+		"damage_vulnerabilities",
+		"damage_resistances",
+		"damage_immunities",
+		"condition_immunities"
+	]
+
+	// Create each subsection (title/body pairs)
+	for (section of sectionOrderList){
+		// Get # of entries for this key in monster
+		var sectionLength = monster[section].length
+		if (typeof sectionLength == "undefined"){
+			sectionLength = Object.keys(monster[section]).length
+		}
+
+		if (sectionLength > 0){
+			//Title
+			var titleName = section.replace("_", "&nbsp;")
+			const titleDiv = document.createElement("div");
+			titleDiv.classList.add('mc_body_title')
+			titleDiv.innerHTML = titleName
+			parentDiv.appendChild(titleDiv)
+
+			//Body
+			const bodyDiv = document.createElement("div");
+			bodyDiv.classList.add('mc_body_list')
+			parentDiv.appendChild(bodyDiv)
+
+			//List items for rows in body
+			const ulDiv = document.createElement("ul");
+			bodyDiv.appendChild(ulDiv)
+			if (section=="speed" || section=="senses"){
+				for (k in monster[section]){
+					const v = monster[section][k]
+					const liDiv = document.createElement("li");
+					liDiv.innerHTML = k.replace("_", "&nbsp;") + ':&nbsp;' + v
+					ulDiv.appendChild(liDiv)
+				}
+			}
+			if (section=="damage_vulnerabilities" || section=="damage_resistances" || section=="damage_immunities" || section=="condition_immunities"){
+
+				for (v of monster[section]){
+					const liDiv = document.createElement("li");
+					liDiv.innerHTML = v
+					ulDiv.appendChild(liDiv)
+				}
+				if (monster[section].length == 0){
+					const liDiv = document.createElement("li");
+					liDiv.innerHTML = "none"
+					ulDiv.appendChild(liDiv)
+				}
+			}
+			if (section=="proficiencies"){
+				for (profItem of monster[section]){
+					const liDiv = document.createElement("li");
+					liDiv.innerHTML = profItem.proficiency.name
+					ulDiv.appendChild(liDiv)
+				}
+			}
+		}
+	}
+	
 
 
+}
 
+function makeMonsterCard_right(parentDiv, monster){
+	const sectionOrderList = [
+		"special_abilities",
+		"actions",
+		"legendary_actions"
+	]
+
+	// Create each subsection (title/body pairs)
+	for (section of sectionOrderList){
+		// Get # of entries for this key in monster
+		if (section in monster && monster[section].length > 0){
+			//Title
+			var headerText = section.replace("_", "&nbsp;")
+			const titleDiv = document.createElement("div");
+			titleDiv.classList.add('mc_body_title')
+			titleDiv.innerHTML = headerText
+			parentDiv.appendChild(titleDiv)
+
+			// Bodies (multi per title sometimes)
+			for (data of monster[section]){
+				const bodyDiv = document.createElement("div");
+				bodyDiv.classList.add('mc_body_desc')
+				bodyDiv.innerHTML = "<b>" + data.name + ':</b>&nbsp;' + data.desc
+				parentDiv.appendChild(bodyDiv)
+			}
+
+		}
+	}
+}
 
 
 
