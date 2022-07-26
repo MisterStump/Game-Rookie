@@ -48,46 +48,8 @@ function search(){
 		if (monster.name=="Air Elemental"){
 			break
 		}
-		// Create row
-		var newRow = document.createElement("div");
-		newRow.classList.add('searchResult')
-		newRow.classList.add('collapsable')
-		src.appendChild(newRow)
-		// Create cells
-		var cellValueList = [
-			monster.name,
-			monster.size,
-			monster.type,
-			monster.armor_class,
-			monster.hit_points,
-			monster.challenge_rating
-		]
-		for (cellIndex in cellValueList){
-			var cellValue = cellValueList[cellIndex]
-			var newCell = document.createElement("div");
-			if (cellIndex == 0){
-				newCell.style.cssText += "flex-grow:2;"
-			}
-			newCell.innerText = cellValue
-			newRow.appendChild(newCell)
-		}
-		// Add click event lisener for collapsable
-		newRow.addEventListener("click", function() {
-			this.classList.toggle("active");
-			var content = this.nextElementSibling;
-			if (content.style.display === "block") {
-			  content.style.display = "none";
-			} else {
-			  content.style.display = "block";
-			}
-		});
-		// Create collapsable section
-		var collapsable = document.createElement("div");
-		collapsable.classList.add('collapsableContent')
-		collapsable.style.display = "none";
-		collapsable.innerHTML = "A card with all the monster details will go here"
-		src.appendChild(collapsable)
-		
+		// Add row with collapsable card for monster
+		makeMonsteRow(src, monster)
 	}
 }
 
@@ -99,6 +61,51 @@ function clearSearch(e){
 		child = e.lastElementChild;
 	}
 }
+
+function makeMonsteRow(src, monster){
+	// Create row
+	var newRow = document.createElement("div");
+	newRow.classList.add('searchResult')
+	newRow.classList.add('collapsable')
+	src.appendChild(newRow)
+	// Create cells
+	var cellValueList = [
+		monster.name,
+		monster.size,
+		monster.type,
+		monster.armor_class,
+		monster.hit_points,
+		monster.challenge_rating
+	]
+	for (cellIndex in cellValueList){
+		var cellValue = cellValueList[cellIndex]
+		var newCell = document.createElement("div");
+		if (cellIndex == 0){
+			newCell.style.cssText += "flex-grow:2;"
+		}
+		newCell.innerText = cellValue
+		newRow.appendChild(newCell)
+	}
+	// Add click event lisener for collapsable
+	newRow.addEventListener("click", function() {
+		this.classList.toggle("active");
+		var content = this.nextElementSibling;
+		if (content.style.display === "block") {
+		  content.style.display = "none";
+		} else {
+		  content.style.display = "block";
+		}
+	});
+	// Create collapsable section
+	var collapsable = document.createElement("div");
+	collapsable.classList.add('collapsableContent')
+	collapsable.style.display = "none";
+	collapsable.innerHTML = "A card with all the monster details will go here"
+	src.appendChild(collapsable)
+}
+
+
+
 
 
 
