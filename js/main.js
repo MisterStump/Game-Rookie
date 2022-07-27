@@ -198,16 +198,17 @@ function makeMonsterCard_left(parentDiv, monster){
 					ulDiv.appendChild(liDiv)
 				}
 			}
-			if (section=="damage_vulnerabilities" || section=="damage_resistances" || section=="damage_immunities" || section=="condition_immunities"){
-
+			if (section=="damage_vulnerabilities" || section=="damage_resistances" || section=="damage_immunities"){
 				for (v of monster[section]){
 					const liDiv = document.createElement("li");
 					liDiv.innerHTML = v
 					ulDiv.appendChild(liDiv)
 				}
-				if (monster[section].length == 0){
+			}
+			if (section=="condition_immunities"){
+				for (v of monster[section]){
 					const liDiv = document.createElement("li");
-					liDiv.innerHTML = "none"
+					liDiv.innerHTML = v.name
 					ulDiv.appendChild(liDiv)
 				}
 			}
