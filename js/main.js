@@ -15,8 +15,6 @@ function openNav() {
 	document.getElementById("main").style.marginLeft = "250px";
 	document.querySelector('div[class="sidebarClose"]').style.display = "block";
 	document.querySelector('div[class="sidebarOpen"]').style.display = "none";
-	console.log("try")
-	console.log(monsterList)
   }
   
   /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
