@@ -198,4 +198,18 @@ body {
 	display: inline-block; 
 	width: 1em; 
 	margin-left: -1em; 
-  }
+}
+
+
+
+/* Close the side panel if screen width dips below limit */
+@media screen and (max-width: 1000px) {
+	.sidebar {
+    	width: 0px;
+  	}
+	#main {
+		margin-left: 0px;
+	}
+	.sidebarOpen {display:block;}
+	.sidebarClose {display:none;}
+}
