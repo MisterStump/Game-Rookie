@@ -154,6 +154,7 @@ body {
 .mc_header, .mc_body {
 	display:flex;
 }
+.mc_header { flex-wrap:wrap; }
 .mc_header div {
 	padding: 0.5em;
 	flex-grow: 1;
