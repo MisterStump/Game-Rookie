@@ -213,3 +213,20 @@ body {
 	.sidebarOpen {display:block;}
 	.sidebarClose {display:none;}
 }
+
+
+
+
+/* Search input fields */
+.searchInputs {
+	display: flex;
+	align-items: left;
+
+}
+.searchInputs div {
+	padding: 0em 1em 1em 1em;
+
+}
+.searchInputs input {
+	
+}

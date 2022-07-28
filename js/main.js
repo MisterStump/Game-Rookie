@@ -36,12 +36,52 @@ fetch("./json/Monsters.json")
 
 //Fields to search with:name, size, type, armor_class, hit_points, hit_dice, speed type,challenge_rating
 
+function clearResults(){
+	// Kill children in div
+	var src = document.getElementById("searchResultContainer")
+	clearSearch(src)
+}
+
 function search(){
 	var src = document.getElementById("searchResultContainer")
 	// Kill children in div
 	clearSearch(src)
+	// Search criteria filtering
+	var monsterSearchList = JSON.parse(JSON.stringify(monsterList))
+
+
+
+	// name
+	var monsterName = document.querySelector("[id='monsterName']").value
+	if (monsterName){
+		monsterSearchList = monsterSearchList.filter(monster => monster.name.toLowerCase().includes(monsterName.toLowerCase()));
+	}
+	// ac min
+	var monsterACmin = document.querySelector("[id='monsterACmin']").value
+	if (monsterACmin){
+		monsterSearchList = monsterSearchList.filter(monster => monster.armor_class >= monsterACmin);
+	}
+	// ac max
+	var monsterACmax = document.querySelector("[id='monsterACmax']").value
+	if (monsterACmax){
+		monsterSearchList = monsterSearchList.filter(monster => monster.armor_class <= monsterACmax);
+	}
+	// cr min
+	var monsterCRmin = document.querySelector("[id='monsterCRmin']").value
+	if (monsterCRmin){
+		monsterSearchList = monsterSearchList.filter(monster => monster.challenge_rating >= monsterCRmin);
+	}
+	// cr max
+	var monsterCRmax = document.querySelector("[id='monsterCRmax']").value
+	if (monsterCRmax){
+		monsterSearchList = monsterSearchList.filter(monster => monster.challenge_rating <= monsterCRmax);
+	}
+	
+
+
+
 	// Add rows
-	for (monster of monsterList){
+	for (monster of monsterSearchList){
 		// Temp stop point to only return a handfull of results. Should be removed later. Test
 		if (monster.name=="Air Elemental"){
 			//break
@@ -224,6 +264,7 @@ function makeMonsterCard_left(parentDiv, monster){
 
 }
 
+// Create right-side monster card entires
 function makeMonsterCard_right(parentDiv, monster){
 	const sectionOrderList = [
 		"special_abilities",

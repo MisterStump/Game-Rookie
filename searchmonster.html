@@ -26,10 +26,33 @@
     <div id="main">
         <h2>How It Works</h2>
         <p>Make search selections and click the "Search" button to return a list of matching creatures.</p>
+
+
         <h2>Search</h2>
         <div class="searchInputs">
-             <button onclick="search()">Click to Search</button>
+            <div>
+                <label>Name</label>
+                <br>
+                <input type="text" id="monsterName">
+            </div>
+            <div>
+                <label>AC&nbsp;<i>(min-max)</i></label>
+                <br>
+                <input type="text" id="monsterACmin" style="width:3em;">&nbsp;-
+                <input type="text" id="monsterACmax" style="width:3em;overflow:hidden;">
+            </div>
+            <div>
+                <label>CR&nbsp;<i>(min-max)</i></label>
+                <br>
+                <input type="text" id="monsterCRmin" style="width:3em;">&nbsp;-
+                <input type="text" id="monsterCRmax" style="width:3em;overflow:hidden;">
+            </div>
         </div>
+        <div style="padding:0em 1em;">
+            <button onclick="search()">Click to Search</button>
+            <button onclick="clearResults()">Clear Results</button>
+        </div>
+
         <h2>Results</h2>
         <div class="searchHeaders">
             <div style="flex-grow:2;">Name</div>
